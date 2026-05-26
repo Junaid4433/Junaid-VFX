@@ -1,0 +1,33 @@
+To display your own videos on the projects:
+
+=============================================
+PROJECT 1: ABANDONED OUTPOST
+=============================================
+1. Primary Loop Video:
+   - Copy your primary project video file (in MP4 format).
+   - Paste it into this assets folder.
+   - Rename the file to: outpost.mp4
+   - This video plays as the card hover preview and the main modal video.
+
+2. VFX Breakdown Video:
+   - Copy your breakdown video file (in MP4 format).
+   - Paste it into this assets folder.
+   - Rename the file to: playblast out main.mp4
+   - This video plays in the VFX Breakdown section inside the modal.
+
+=============================================
+PROJECT 2: URBAN DRONE INTEGRATION
+=============================================
+1. Primary Loop Video:
+   - Copy your primary drone project video file (in MP4 format).
+   - Paste it into this assets folder.
+   - Rename the file to: drone.mp4
+   - This video plays as the card hover preview and the main modal video.
+
+2. VFX Breakdown Video:
+   - Copy your drone breakdown video file (in MP4 format).
+   - Paste it into this assets folder.
+   - Rename the file to: drone-breakdown.mp4
+   - This video plays in the VFX Breakdown section inside the modal.
+
+Once you have copied and named these files, simply reload your browser page (http://localhost:8080) to see them!

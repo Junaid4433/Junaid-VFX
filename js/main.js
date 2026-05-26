@@ -1,0 +1,361 @@
+/* C:\Users\Junaid\.gemini\antigravity\scratch\3d-portfolio\js\main.js */
+import { gsap } from 'gsap';
+
+// Project Database for Modals
+const projectData = {
+  outpost: {
+    title: 'Abandoned Outpost',
+    subtitle: 'Live-Action VFX Integration',
+    img: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800&auto=format&fit=crop',
+    video: 'assets/outpost.mp4',
+    breakdown: 'assets/playblast out main.mp4',
+    tags: ['Maya', 'Matchmoving', 'VFX', 'Compositing', 'After Effects'],
+    description: 'A seamless integration of 3D elements into a live-action plate. Features precise camera tracking and matchmoving to lock digital assets into a handheld environment, finalized with realistic lighting matches, depth of field, and cinematic compositing in After Effects.',
+    features: [
+      'High-precision 3D camera tracking of handheld camera motion with sub-pixel alignment.',
+      'Custom lighting setup matched to the original high-dynamic-range (HDR) background plate.',
+      'Deep compositing in After Effects including accurate depth map extraction and atmospheric effects.',
+      'Seamless integration of distressed 3D elements with shadows, reflections, and contact occlusion.'
+    ],
+    liveLink: '#',
+    codeLink: '#'
+  },
+  drone: {
+    title: 'Urban Drone Integration',
+    subtitle: '3D Tracking & Compositing Pipeline',
+    img: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=800&auto=format&fit=crop',
+    video: 'assets/drone.mp4',
+    breakdown: 'assets/drone-breakdown.mp4',
+    tags: ['Maya', 'Matchmoving', 'VFX', 'Compositing', 'After Effects'],
+    description: 'A complex visual effects integration utilizing a multi-software pipeline. Features precise live-action camera tracking, 3D scene blocking and lighting setup in Maya, multi-pass AOV rendering, and final cinematic compositing and grading in After Effects.',
+    features: [
+      'High-precision 3D tracking and reconstruction of complex urban drone camera movement.',
+      'Advanced lighting integration matching shadow direction, color temperature, and contact occlusions.',
+      'Multi-pass AOV rendering (diffuse, specular, refraction, shadow, Z-depth) out of Maya.',
+      'Final compositing, color matching, grain integration, and color grading in After Effects.'
+    ],
+    liveLink: '#',
+    codeLink: '#'
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  setupCustomCursor();
+  setupScrollEffects();
+  setupProjectModals();
+  setupContactForm();
+  setupNavigationHighlighting();
+  setupProjectVideoPreviews();
+});
+
+// 1. Custom Cursor Physics and Hover States
+function setupCustomCursor() {
+  const cursorDot = document.getElementById('custom-cursor');
+  const cursorOutline = document.getElementById('custom-cursor-outline');
+
+  if (!cursorDot || !cursorOutline) return;
+
+  let mouseX = 0, mouseY = 0; // Actual mouse position
+  let dotX = 0, dotY = 0;     // Position of solid dot
+  let outlineX = 0, outlineY = 0; // Position of lagging outline
+
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  // Animation loop to interpolate coordinates (Lerp) for smooth lagging effect
+  function renderCursor() {
+    dotX += (mouseX - dotX) * 0.25;
+    dotY += (mouseY - dotY) * 0.25;
+
+    outlineX += (mouseX - outlineX) * 0.12;
+    outlineY += (mouseY - outlineY) * 0.12;
+
+    cursorDot.style.left = `${dotX}px`;
+    cursorDot.style.top = `${dotY}px`;
+
+    cursorOutline.style.left = `${outlineX}px`;
+    cursorOutline.style.top = `${outlineY}px`;
+
+    requestAnimationFrame(renderCursor);
+  }
+  renderCursor();
+
+  // Hover triggers for all interactive links
+  const interactives = document.querySelectorAll('a, button, input, textarea, .project-card, .logo');
+  interactives.forEach((elem) => {
+    elem.addEventListener('mouseenter', () => {
+      cursorDot.classList.add('custom-cursor-hover');
+      cursorOutline.classList.add('custom-cursor-outline-hover');
+    });
+
+    elem.addEventListener('mouseleave', () => {
+      cursorDot.classList.remove('custom-cursor-hover');
+      cursorOutline.classList.remove('custom-cursor-outline-hover');
+    });
+  });
+}
+
+// 2. GSAP Scroll Animations
+function setupScrollEffects() {
+  // Hero load animations
+  gsap.from('.hero-subtitle', { opacity: 0, y: 30, duration: 1.2, ease: 'power4.out', delay: 0.2 });
+  gsap.from('.hero-title', { opacity: 0, y: 40, duration: 1.2, ease: 'power4.out', delay: 0.4 });
+  gsap.from('.hero-description', { opacity: 0, y: 30, duration: 1.2, ease: 'power4.out', delay: 0.6 });
+  gsap.from('.btn-group', { opacity: 0, y: 20, duration: 1.2, ease: 'power4.out', delay: 0.8 });
+
+  // Fade-in headings and cards on scroll
+  const scrollElements = document.querySelectorAll('.section-title, .glass-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        gsap.to(entry.target, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out' });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  scrollElements.forEach(elem => {
+    // Set initial transparent state before scroll trigger
+    gsap.set(elem, { opacity: 0, y: 45 });
+    observer.observe(elem);
+  });
+}
+
+// 3. Project Detail Modals Mapping
+function setupProjectModals() {
+  const modal = document.getElementById('project-modal');
+  const modalClose = document.getElementById('modal-close');
+  const modalBody = document.getElementById('modal-body-content');
+
+  if (!modal || !modalClose || !modalBody) return;
+
+  const openTriggers = document.querySelectorAll('[data-open-modal]');
+  openTriggers.forEach((trigger) => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      const projectKey = trigger.getAttribute('data-open-modal');
+      const data = projectData[projectKey];
+
+      if (data) {
+        modalBody.innerHTML = `
+          <h2 class="section-title" style="margin-bottom: 0.5rem; font-size: 2.2rem;">${data.title}</h2>
+          <h4 style="font-family: var(--font-heading); color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">${data.subtitle}</h4>
+          
+          <div style="position: relative; width: 100%;">
+            ${data.breakdown ? `
+              <div id="modal-breakdown-badge" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255, 0, 127, 0.25); border: 1px solid var(--accent-pink); color: #fff; padding: 0.4rem 0.8rem; border-radius: 30px; font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; z-index: 10; box-shadow: 0 0 10px rgba(255, 0, 127, 0.4); display: flex; align-items: center; gap: 0.25rem; cursor: pointer; transition: all 0.2s ease;">
+                <span>Breakdown Below</span> <span class="badge-arrow" style="font-size: 0.85rem; line-height: 1; display: inline-block;">&darr;</span>
+              </div>
+            ` : ''}
+            
+            ${data.video ? `
+              <video class="modal-img" autoplay loop muted playsinline controls style="object-fit: cover; width: 100%; max-height: 350px; border-radius: 12px; margin-bottom: 0.5rem; display: block;">
+                <source src="${data.video}" type="video/mp4">
+              </video>
+            ` : `
+              <img class="modal-img" src="${data.img}" alt="${data.title}" style="display: block; width: 100%; max-height: 350px; border-radius: 12px; object-fit: cover; margin-bottom: 0.5rem;">
+            `}
+          </div>
+          
+          <div class="modal-tech-stack">
+            ${data.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+          </div>
+          
+          <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1rem;">${data.description}</p>
+          
+          <div style="margin-bottom: 1.5rem;">
+            <h4 style="font-family: var(--font-heading); color: var(--text-main); margin-bottom: 0.75rem;">Key Engineering Highlights:</h4>
+            <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 0.5rem; color: var(--text-muted); font-size: 0.95rem;">
+              ${data.features.map(f => `<li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">&#9670;</span>${f}</li>`).join('')}
+            </ul>
+          </div>
+
+          ${data.breakdown ? `
+            <div id="modal-breakdown-section" style="margin-top: 1.5rem; border-top: 1px solid var(--border-glass); padding-top: 1.5rem; margin-bottom: 1rem;">
+              <h4 style="font-family: var(--font-heading); color: var(--accent-cyan); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">VFX Breakdown:</h4>
+              <video class="modal-img" loop muted playsinline controls style="object-fit: cover; width: 100%; max-height: 350px; border-radius: 12px;">
+                <source src="${data.breakdown}" type="video/mp4">
+              </video>
+            </div>
+          ` : ''}
+        `;
+        
+        // Open Modal
+        modal.classList.add('active');
+        
+        // Scroll smoothly to breakdown section on badge click
+        const breakdownBadge = modal.querySelector('#modal-breakdown-badge');
+        const breakdownSec = modal.querySelector('#modal-breakdown-section');
+        if (breakdownBadge && breakdownSec) {
+          breakdownBadge.addEventListener('click', () => {
+            breakdownSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+        }
+        
+        const modalInteractives = modal.querySelectorAll('a, button, #modal-breakdown-badge');
+        modalInteractives.forEach(elem => {
+          elem.addEventListener('mouseenter', () => {
+            const cursorDot = document.getElementById('custom-cursor');
+            const cursorOutline = document.getElementById('custom-cursor-outline');
+            cursorDot.classList.add('custom-cursor-hover');
+            cursorOutline.classList.add('custom-cursor-outline-hover');
+          });
+          elem.addEventListener('mouseleave', () => {
+            const cursorDot = document.getElementById('custom-cursor');
+            const cursorOutline = document.getElementById('custom-cursor-outline');
+            cursorDot.classList.remove('custom-cursor-hover');
+            cursorOutline.classList.remove('custom-cursor-outline-hover');
+          });
+        });
+        
+        document.body.style.overflow = 'hidden'; // Stop background scrolling
+      }
+    });
+  });
+
+  // Close modal logic
+  const closeModalFunc = () => {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  modalClose.addEventListener('click', closeModalFunc);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModalFunc();
+  });
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) closeModalFunc();
+  });
+}
+
+// 4. Custom Contact Form Handling and Feedback Alert
+function setupContactForm() {
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('submit-btn');
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Stop native form submission / page redirect
+
+    const name = document.getElementById('form-name').value.trim();
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const json = await res.json();
+
+      if (res.ok && json.success) {
+        showToast(name, false);
+        form.reset();
+      } else {
+        showToast(name, true);
+        console.error('Web3Forms error:', json);
+      }
+    } catch (err) {
+      showToast(name, true);
+      console.error('Network error:', err);
+    } finally {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+}
+
+function showToast(name, isError = false) {
+  const toast = document.createElement('div');
+  toast.className = 'glass-card';
+  toast.style.position = 'fixed';
+  toast.style.bottom = '2rem';
+  toast.style.right = '2rem';
+  toast.style.zIndex = '9999';
+  toast.style.borderLeft = isError ? '4px solid var(--accent-pink)' : '4px solid var(--accent-cyan)';
+  toast.style.padding = '1.25rem 2rem';
+  toast.style.opacity = '0';
+  toast.style.transform = 'translateY(20px)';
+  toast.style.transition = 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+  
+  if (isError) {
+    toast.innerHTML = `
+      <h4 style="font-family: var(--font-heading); color: var(--accent-pink); margin-bottom: 0.25rem;">Transmission Failed</h4>
+      <p style="font-size: 0.9rem; color: var(--text-main);">Sorry ${name}, there was an issue. Please try again or email me directly.</p>
+    `;
+  } else {
+    toast.innerHTML = `
+      <h4 style="font-family: var(--font-heading); color: var(--accent-cyan); margin-bottom: 0.25rem;">Pipeline Connection Established</h4>
+      <p style="font-size: 0.9rem; color: var(--text-main);">Thanks, ${name}! Your request has been queued in my pipeline.</p>
+    `;
+  }
+
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+  }, 100);
+
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(20px)';
+    setTimeout(() => {
+      toast.remove();
+    }, 400);
+  }, 4500);
+}
+
+// 5. Navigation Links Center Highlight on Scroll
+function setupNavigationHighlighting() {
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav a');
+
+  window.addEventListener('scroll', () => {
+    let currentSectionId = '';
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      
+      // Highlight nav when page scrolled past section's top half
+      if (window.scrollY >= sectionTop - sectionHeight / 2.5) {
+        currentSectionId = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${currentSectionId}`) {
+        link.classList.add('active');
+      }
+    });
+  });
+}
+
+// 6. Hover-to-Play Video Preview on Project Cards
+function setupProjectVideoPreviews() {
+  const cards = document.querySelectorAll('.project-card');
+  cards.forEach(card => {
+    const video = card.querySelector('.project-video-preview');
+    if (!video) return;
+
+    card.addEventListener('mouseenter', () => {
+      video.play().catch(err => {
+        console.log("Video playback was interrupted or blocked:", err);
+      });
+    });
+
+    card.addEventListener('mouseleave', () => {
+      video.pause();
+      video.currentTime = 0; // Reset to first frame immediately
+    });
+  });
+}
