@@ -76,12 +76,13 @@ function init() {
 
   // Renderer setup
   renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const maxPixelRatio = window.innerWidth < 768 ? 1.3 : 2;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
   renderer.setSize(window.innerWidth, window.innerHeight);
   container.appendChild(renderer.domElement);
 
   // 1. Particle Starfield
-  const particleCount = 1800;
+  const particleCount = window.innerWidth < 768 ? 600 : 1800;
   particlesGeometry = new THREE.BufferGeometry();
   const positions = new Float32Array(particleCount * 3);
   const colors = new Float32Array(particleCount * 3);
@@ -133,7 +134,8 @@ function init() {
   scene.add(particlesMesh);
 
   // 2. Liquid Blob Mesh
-  const blobGeometry = new THREE.SphereGeometry(2.2, 96, 96);
+  const segments = window.innerWidth < 768 ? 48 : 96;
+  const blobGeometry = new THREE.SphereGeometry(2.2, segments, segments);
   const blobMaterial = new THREE.ShaderMaterial({
     vertexShader: vertexShader,
     fragmentShader: fragmentShader,
@@ -153,6 +155,7 @@ function init() {
     blobMesh.position.set(2.2, 0, 0);
   } else {
     blobMesh.position.set(0, 0, -1);
+    blobMesh.scale.set(0.7, 0.7, 0.7); // Scale down slightly on mobile so it doesn't crowd text
   }
   
   scene.add(blobMesh);
@@ -194,8 +197,14 @@ function onWindowResize() {
 
   if (currentWidth > 991) {
     blobMesh.position.x = 2.2;
+    blobMesh.scale.set(1.0, 1.0, 1.0);
   } else {
     blobMesh.position.x = 0;
+    if (currentWidth < 768) {
+      blobMesh.scale.set(0.7, 0.7, 0.7);
+    } else {
+      blobMesh.scale.set(1.0, 1.0, 1.0);
+    }
   }
 }
 
@@ -220,10 +229,12 @@ function animate() {
 
     // Fluid parallax adjustments based on mouse & scroll
     let basePosX = (window.innerWidth > 991) ? 2.2 : 0;
+    const isMobile = window.innerWidth < 768;
+    const parallaxFactor = isMobile ? 0 : 0.25;
     
     // Scroll morphing: Blob moves left and shifts deep on scroll
-    blobMesh.position.x = basePosX - (scrollProgress * 4.5) + (targetX * 0.25);
-    blobMesh.position.y = -targetY * 0.25;
+    blobMesh.position.x = basePosX - (scrollProgress * (isMobile ? 2.0 : 4.5)) + (targetX * parallaxFactor);
+    blobMesh.position.y = -targetY * parallaxFactor;
     blobMesh.position.z = -scrollProgress * 5.0;
 
     // Morph blob properties with scroll (gets more chaotic as scroll increases)

@@ -40,62 +40,13 @@ const projectData = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  setupCustomCursor();
   setupScrollEffects();
   setupProjectModals();
   setupContactForm();
   setupNavigationHighlighting();
   setupProjectVideoPreviews();
+  setupMobileMenu();
 });
-
-// 1. Custom Cursor Physics and Hover States
-function setupCustomCursor() {
-  const cursorDot = document.getElementById('custom-cursor');
-  const cursorOutline = document.getElementById('custom-cursor-outline');
-
-  if (!cursorDot || !cursorOutline) return;
-
-  let mouseX = 0, mouseY = 0; // Actual mouse position
-  let dotX = 0, dotY = 0;     // Position of solid dot
-  let outlineX = 0, outlineY = 0; // Position of lagging outline
-
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-
-  // Animation loop to interpolate coordinates (Lerp) for smooth lagging effect
-  function renderCursor() {
-    dotX += (mouseX - dotX) * 0.25;
-    dotY += (mouseY - dotY) * 0.25;
-
-    outlineX += (mouseX - outlineX) * 0.12;
-    outlineY += (mouseY - outlineY) * 0.12;
-
-    cursorDot.style.left = `${dotX}px`;
-    cursorDot.style.top = `${dotY}px`;
-
-    cursorOutline.style.left = `${outlineX}px`;
-    cursorOutline.style.top = `${outlineY}px`;
-
-    requestAnimationFrame(renderCursor);
-  }
-  renderCursor();
-
-  // Hover triggers for all interactive links
-  const interactives = document.querySelectorAll('a, button, input, textarea, .project-card, .logo');
-  interactives.forEach((elem) => {
-    elem.addEventListener('mouseenter', () => {
-      cursorDot.classList.add('custom-cursor-hover');
-      cursorOutline.classList.add('custom-cursor-outline-hover');
-    });
-
-    elem.addEventListener('mouseleave', () => {
-      cursorDot.classList.remove('custom-cursor-hover');
-      cursorOutline.classList.remove('custom-cursor-outline-hover');
-    });
-  });
-}
 
 // 2. GSAP Scroll Animations
 function setupScrollEffects() {
@@ -194,21 +145,6 @@ function setupProjectModals() {
           });
         }
         
-        const modalInteractives = modal.querySelectorAll('a, button, #modal-breakdown-badge');
-        modalInteractives.forEach(elem => {
-          elem.addEventListener('mouseenter', () => {
-            const cursorDot = document.getElementById('custom-cursor');
-            const cursorOutline = document.getElementById('custom-cursor-outline');
-            cursorDot.classList.add('custom-cursor-hover');
-            cursorOutline.classList.add('custom-cursor-outline-hover');
-          });
-          elem.addEventListener('mouseleave', () => {
-            const cursorDot = document.getElementById('custom-cursor');
-            const cursorOutline = document.getElementById('custom-cursor-outline');
-            cursorDot.classList.remove('custom-cursor-hover');
-            cursorOutline.classList.remove('custom-cursor-outline-hover');
-          });
-        });
         
         document.body.style.overflow = 'hidden'; // Stop background scrolling
       }
@@ -316,7 +252,7 @@ function showToast(name, isError = false) {
 // 5. Navigation Links Center Highlight on Scroll
 function setupNavigationHighlighting() {
   const sections = document.querySelectorAll('section');
-  const navLinks = document.querySelectorAll('nav a');
+  const navLinks = document.querySelectorAll('nav a, .mobile-nav-link');
 
   window.addEventListener('scroll', () => {
     let currentSectionId = '';
@@ -359,3 +295,36 @@ function setupProjectVideoPreviews() {
     });
   });
 }
+
+// 7. Mobile Navigation Drawer Toggle Handler
+function setupMobileMenu() {
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+  if (!mobileMenuBtn || !mobileNavOverlay) return;
+
+  const toggleMenu = () => {
+    const isOpen = mobileMenuBtn.classList.toggle('active');
+    mobileNavOverlay.classList.toggle('active', isOpen);
+    
+    // Disable or enable background scrolling when overlay is active
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  };
+
+  mobileMenuBtn.addEventListener('click', toggleMenu);
+
+  // Close menu when a navigation link is clicked
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenuBtn.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+}
+

@@ -69,12 +69,13 @@ function init() {
 
   renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
   renderer.setSize(width, height);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  const maxPixelRatio = window.innerWidth < 768 ? 1.3 : 2;
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, maxPixelRatio));
 
   sphereGroup = new THREE.Group();
   scene.add(sphereGroup);
 
-  const radius = 3.0;
+  const radius = window.innerWidth < 768 ? 2.2 : 3.0;
   const total = skills.length;
   const colors = ['#00f2fe', '#9d4edd', '#ff007f'];
 
