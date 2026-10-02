@@ -36,6 +36,22 @@ const projectData = {
     ],
     liveLink: '#',
     codeLink: '#'
+  },
+  corridor: {
+    title: 'Sci-Fi Corridor VFX Integration',
+    subtitle: '3D Asset Integration & Digital Compositing',
+    img: 'https://images.unsplash.com/photo-1615653051968-070ddce4c164?q=80&w=800&auto=format&fit=crop',
+    video: 'assets/corridor_vfx_render_final.mp4',
+    breakdown: 'assets/corridor_breakdown.mp4',
+    tags: ['Maya', 'After Effects', 'VFX', 'Compositing'],
+    description: 'A live-action visual effects shot set in a corridor, featuring integrated 3D elements—including overhead piping fixtures and decorative wall props—paired with heavy digital distortion, RGB displacement, static grain, and glitch transition effects. The sequence moves from a stable environment shot into a high-intensity distortion breakdown before fading out.',
+    features: [
+      'Extracted camera tracking data in After Effects to align 3D assets with the live-action hallway movement.',
+      'Integrated custom 3D pipe structures and wall-mounted props modeled and lit in Maya into the plate.',
+      'Applied custom glitch animations, chromatic aberration, wave distortion, and digital noise passes in After Effects for the transition sequence.'
+    ],
+    liveLink: '#',
+    codeLink: '#'
   }
 };
 
