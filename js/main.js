@@ -58,6 +58,7 @@ const projectData = {
     subtitle: '3D Environment Modeling & Live-Action VFX Integration',
     img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop',
     video: 'assets/Off_Grid_Alien_Planet.mp4',
+    breakdown: 'assets/Off_Grid_Alien_Planet_breakdown.mp4',
     tags: ['Maya', 'Matchmoving', 'VFX', 'Compositing', 'After Effects'],
     description: 'A cinematic visual effects shot depicting an astronaut exploring a rugged alien landscape featuring a derailed metallic train. The sequence tracks a live-action subject keyed and composited into a fully modeled 3D environment, featuring realistic space lighting, atmospheric particle effects, and anamorphic lens flares.',
     features: [
