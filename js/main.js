@@ -52,6 +52,22 @@ const projectData = {
     ],
     liveLink: '#',
     codeLink: '#'
+  },
+  alienPlanet: {
+    title: 'Off-Grid Alien Planet Integration',
+    subtitle: '3D Environment Modeling & Live-Action VFX Integration',
+    img: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop',
+    video: 'assets/Off_Grid_Alien_Planet.mp4',
+    tags: ['Maya', 'Matchmoving', 'VFX', 'Compositing', 'After Effects'],
+    description: 'A cinematic visual effects shot depicting an astronaut exploring a rugged alien landscape featuring a derailed metallic train. The sequence tracks a live-action subject keyed and composited into a fully modeled 3D environment, featuring realistic space lighting, atmospheric particle effects, and anamorphic lens flares.',
+    features: [
+      'Solved 3D camera tracking and keying to lock the live-action actor into the digital environment.',
+      'Built and textured a full 3D sci-fi landscape in Maya, including rocky terrain, mountains, and a derailed train asset.',
+      'Matched directional key lighting, contact shadows, and environmental reflections across the suit and visor.',
+      'Composited anamorphic lens flares, dust particles, and atmospheric depth passes in After Effects.'
+    ],
+    liveLink: '#',
+    codeLink: '#'
   }
 };
 
