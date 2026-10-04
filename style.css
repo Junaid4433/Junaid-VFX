@@ -1240,18 +1240,26 @@ footer a {
     max-width: 100%;
   }
   .hero-bg-img {
-    height: 100%;
-    left: 50%;
-    opacity: 0.35;
+    /* Landscape photo on portrait screen: fit by width so full head is visible */
+    width: 100%;
+    height: auto;
+    top: 0;
+    bottom: auto;
+    left: 0;
+    transform: none;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0.65;
   }
   .hero-gradient-left {
+    /* Lighter overlay on mobile so photo shows through better */
     background: linear-gradient(180deg,
-      rgba(10,10,10,0.85) 0%,
-      rgba(10,10,10,0.65) 50%,
-      rgba(10,10,10,0.92) 100%
+      rgba(10,10,10,0.45) 0%,
+      rgba(10,10,10,0.30) 45%,
+      rgba(10,10,10,0.88) 100%
     );
   }
-  .hero-gradient-bottom { height: 50%; }
+  .hero-gradient-bottom { height: 45%; }
   .hero-quote { display: none; }
   .hero-text-overlay {
     padding: 0 1.25rem 1.5rem;
