@@ -24,8 +24,8 @@ function createTextTexture(text, color) {
   canvas.height = 64;
   const ctx = canvas.getContext('2d');
 
-  // Translucent background for text container
-  ctx.fillStyle = 'rgba(15, 15, 30, 0.6)';
+  // Translucent background for text container matching new dark bento theme
+  ctx.fillStyle = 'rgba(18, 18, 18, 0.85)';
   ctx.roundRect ? ctx.roundRect(4, 4, 248, 56, 12) : ctx.rect(4, 4, 248, 56);
   ctx.fill();
   ctx.strokeStyle = color;
@@ -34,7 +34,7 @@ function createTextTexture(text, color) {
 
   // Glow effect on text
   ctx.shadowColor = color;
-  ctx.shadowBlur = 6;
+  ctx.shadowBlur = 8;
 
   // Text details
   let fontSize = 24;
@@ -77,7 +77,7 @@ function init() {
 
   const radius = window.innerWidth < 768 ? 2.2 : 3.0;
   const total = skills.length;
-  const colors = ['#00f2fe', '#9d4edd', '#ff007f'];
+  const colors = ['#ff5c00', '#ff8800', '#7c3aed', '#ffaa33'];
 
   // Place sprites using Fibonacci Sphere algorithm
   for (let i = 0; i < total; i++) {
