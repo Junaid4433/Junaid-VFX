@@ -1238,28 +1238,36 @@ footer a {
     margin: 0;
     width: 100%;
     max-width: 100%;
+    background: radial-gradient(circle at 50% 26%, rgba(255, 92, 0, 0.3) 0%, rgba(35, 12, 0, 0.5) 45%, #0a0a0a 75%);
   }
   .hero-bg-img {
-    /* Landscape photo on portrait screen: fit by width so full head is visible */
-    width: 100%;
-    height: auto;
-    top: 0;
+    position: absolute;
+    top: 1.5rem;
     bottom: auto;
-    left: 0;
-    transform: none;
-    object-fit: cover;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 54%;
+    width: auto;
+    max-width: none;
+    object-fit: contain;
     object-position: center top;
-    opacity: 0.65;
+    opacity: 1;
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 98%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 98%);
+    z-index: 1;
   }
   .hero-gradient-left {
-    /* Lighter overlay on mobile so photo shows through better */
+    /* Transparent over face and head, seamlessly transitions into dark behind text */
     background: linear-gradient(180deg,
-      rgba(10,10,10,0.45) 0%,
-      rgba(10,10,10,0.30) 45%,
-      rgba(10,10,10,0.88) 100%
+      transparent 0%,
+      transparent 30%,
+      rgba(10, 10, 10, 0.7) 50%,
+      rgba(10, 10, 10, 0.96) 72%,
+      #0a0a0a 100%
     );
+    z-index: 2;
   }
-  .hero-gradient-bottom { height: 45%; }
+  .hero-gradient-bottom { display: none; }
   .hero-quote { display: none; }
   .hero-text-overlay {
     padding: 0 1.25rem 1.5rem;
