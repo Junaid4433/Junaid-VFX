@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Interactive 3D Portfolio - Creative Developer and 3D Specialist displaying projects, skills, and experience.">
+  <meta name="description" content="Junaid S – 3D Generalist, VFX Artist & Matchmoving Specialist.">
   <title>Junaid S // Creative 3D Portfolio</title>
-  
+
   <link rel="stylesheet" href="style.css">
 
   <!-- Import Maps for ES Modules in Browser -->
@@ -27,30 +27,15 @@
 </head>
 <body>
 
-
-
-  <!-- Background 3D Canvas -->
-  <div id="bg-canvas-container"></div>
-
   <!-- Header Navigation -->
   <header>
     <a href="#" class="logo">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Outer Diamond Outline -->
-        <path d="M12 2L21 9L12 22L3 9Z" stroke="url(#logo-grad)" stroke-width="2" stroke-linejoin="round"/>
-        <!-- Horizontal Separation Belt -->
-        <path d="M3 9H21" stroke="url(#logo-grad)" stroke-width="1.5" stroke-linejoin="round"/>
-        <!-- Vertical Spine -->
-        <path d="M12 2V22" stroke="url(#logo-grad)" stroke-width="1.5" stroke-linejoin="round"/>
-        <!-- Diagonal Facets -->
-        <path d="M12 2L8 9L12 22" stroke="url(#logo-grad)" stroke-width="1.5" stroke-linejoin="round"/>
-        <path d="M12 2L16 9L12 22" stroke="url(#logo-grad)" stroke-width="1.5" stroke-linejoin="round"/>
-        <defs>
-          <linearGradient id="logo-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
-            <stop stop-color="#00f2fe"/>
-            <stop offset="1" stop-color="#9d4edd"/>
-          </linearGradient>
-        </defs>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L21 9L12 22L3 9Z" stroke="#ff5c00" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M3 9H21" stroke="#ff5c00" stroke-width="1.5"/>
+        <path d="M12 2V22" stroke="#ff5c00" stroke-width="1.5"/>
+        <path d="M12 2L8 9L12 22" stroke="#ff5c00" stroke-width="1.2" stroke-linejoin="round"/>
+        <path d="M12 2L16 9L12 22" stroke="#ff5c00" stroke-width="1.2" stroke-linejoin="round"/>
       </svg>
       <span>JUNAID S</span>
     </a>
@@ -60,7 +45,7 @@
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">Get in Touch</a>
     </nav>
     <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Menu">
       <span></span>
@@ -81,106 +66,154 @@
     </nav>
   </div>
 
-
-  <!-- Hero Section -->
+  <!-- ─── HERO ─── -->
   <section id="home">
-    <div class="hero-content">
-      <div class="hero-subtitle">3D GENERALIST // VFX ARTIST // MATCHMOVING</div>
-      <h1 class="hero-title">Crafting Cinematic <span>Realms</span> in 3D.</h1>
-      <p class="hero-description">I bridge the gap between technical precision and visual storytelling. From detailed 3D modeling and precise matchmoving to seamless VFX integration, I build immersive worlds and cinematic environments from the ground up. Explore my universe.</p>
-      <div class="btn-group">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+    <div class="hero-bento reveal">
+      <!-- Main card -->
+      <div class="hero-main-card">
+        <div class="hero-eyebrow">3D Generalist // VFX Artist // Matchmoving</div>
+        <h1 class="hero-title">Crafting<br>Cinematic <span>Realms</span><br>in 3D.</h1>
+        <p class="hero-description">I bridge the gap between technical precision and visual storytelling. From detailed 3D modeling and precise matchmoving to seamless VFX integration, I build immersive worlds and cinematic environments from the ground up.</p>
+        <div class="hero-cta-row">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
+        <div class="hero-stats" style="margin-top: 2.5rem;">
+          <div>
+            <div class="hero-stat-num">2+</div>
+            <div class="hero-stat-label">Years Exp</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">20+</div>
+            <div class="hero-stat-label">Projects</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">10+</div>
+            <div class="hero-stat-label">VFX Shots</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile card -->
+      <div class="hero-profile-card">
+        <div class="hero-profile-img-wrap">
+          <img src="assets/profile.png" alt="Junaid S" class="hero-profile-img">
+        </div>
+        <div class="hero-profile-caption">
+          <h3>Junaid S</h3>
+          <p>3D Generalist & VFX Artist — Kerala, India</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
+  <!-- ─── ABOUT ─── -->
   <section id="about">
-    <div class="container">
-      <h2 class="section-title">About <span>Me</span></h2>
-      <div class="about-grid">
-        <div class="about-text">
-          <p>I am a 3D Generalist and VFX Artist with a passion for bringing cinematic concepts to life. My workflow spans the entire creative pipeline—from sketching initial storyboards in Photoshop to asset modeling in Maya, texturing in Substance, and final compositing in After Effects.</p>
-          <p>Whether it's tracking a complex camera move or building a world from scratch, I focus on precision, continuity, and strong visual storytelling.</p>
-          <div class="stats-grid">
-            <div class="glass-card stat-item">
-              <div class="stat-number">2+</div>
-              <div class="stat-label">Years Exp</div>
-            </div>
-            <div class="glass-card stat-item">
-              <div class="stat-number">20+</div>
-              <div class="stat-label">Completed Projects</div>
-            </div>
-            <div class="glass-card stat-item">
-              <div class="stat-number">10+</div>
-              <div class="stat-label">VFX Shots</div>
-            </div>
+    <div class="about-bento">
+      <!-- Headline gradient card -->
+      <div class="about-headline-card reveal-left">
+        <span class="section-label">About Me</span>
+        <div class="big-text">Designer.<br><span>Storyteller.</span><br>Technical<br>Artist.</div>
+      </div>
+
+      <!-- Description card -->
+      <div class="about-desc-card reveal-right">
+        <div>
+          <p>I am a 3D Generalist and VFX Artist with a passion for bringing cinematic concepts to life. My workflow spans the entire creative pipeline — from sketching initial storyboards in Photoshop to asset modeling in Maya, texturing in Substance, and final compositing in After Effects.</p>
+          <p style="margin-top: 1rem;">Whether it's tracking a complex camera move or building a world from scratch, I focus on precision, continuity, and strong visual storytelling.</p>
+        </div>
+        <div class="about-stats-row">
+          <div class="about-stat">
+            <div class="about-stat-num">2+</div>
+            <div class="about-stat-label">Years Exp</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">20+</div>
+            <div class="about-stat-label">Projects</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">10+</div>
+            <div class="about-stat-label">VFX Shots</div>
           </div>
         </div>
-        <div class="glass-card">
-          <h3 class="timeline-title" style="margin-bottom: 1.5rem; color: var(--accent-cyan);">My Creative Approach</h3>
-          <p style="color: var(--text-muted); margin-bottom: 1rem;"><strong>01. Story First:</strong> I use storyboarding and design to map out the visual narrative before touching any 3D software.</p>
-          <p style="color: var(--text-muted); margin-bottom: 1rem;"><strong>02. Asset Precision:</strong> I build clean 3D models in Maya and bring them to life with realistic, detailed texturing in Substance Painter.</p>
-          <p style="color: var(--text-muted); margin-bottom: 1.5rem;"><strong>03. Seamless Integration:</strong> I use precise matchmoving and After Effects compositing to perfectly blend digital assets into live-action footage.</p>
-          <div style="border-top: 1px solid var(--border-glass); padding-top: 1.25rem;">
-            <p style="color: var(--text-main); font-size: 0.95rem; font-weight: 500;"><strong>The Blueprint:</strong> From the first sketch to the final VFX composite, I handle the entire pipeline to create seamless visual stories.</p>
-          </div>
+      </div>
+
+      <!-- Creative approach card -->
+      <div class="about-approach-card reveal">
+        <div class="approach-item">
+          <h4>01. Story First</h4>
+          <p>I use storyboarding and design to map out the visual narrative before touching any 3D software.</p>
+        </div>
+        <div class="approach-item">
+          <h4>02. Asset Precision</h4>
+          <p>I build clean 3D models in Maya and bring them to life with realistic, detailed texturing in Substance Painter.</p>
+        </div>
+        <div class="approach-item">
+          <h4>03. Seamless Integration</h4>
+          <p>I use precise matchmoving and After Effects compositing to perfectly blend digital assets into live-action footage.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Projects Section -->
+  <!-- ─── PROJECTS ─── -->
   <section id="projects">
-    <div class="container">
-      <h2 class="section-title">Featured <span>Projects</span></h2>
-      <div class="projects-grid">
-        <!-- Project 1 -->
-        <div class="glass-card project-card" data-project="outpost">
-          <div class="project-img-wrapper">
-            <video class="project-img project-video-preview" loop muted playsinline preload="auto">
-              <source src="assets/outpost.mp4" type="video/mp4">
-            </video>
-          </div>
+    <div class="projects-header reveal">
+      <div class="projects-header-text">
+        <span class="section-label">Recent Work</span>
+        <h2 class="section-title">Featured <span>Projects</span></h2>
+      </div>
+    </div>
+
+    <div class="projects-grid reveal-stagger">
+      <!-- Project 1 -->
+      <div class="project-card" data-project="outpost">
+        <div class="project-img-wrapper">
+          <video class="project-img project-video-preview" loop muted playsinline preload="auto">
+            <source src="assets/outpost.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="project-body">
           <div class="project-tags">
             <span class="tag">Maya</span>
             <span class="tag">Matchmoving</span>
             <span class="tag">VFX</span>
-            <span class="tag">Compositing</span>
             <span class="tag">After Effects</span>
           </div>
           <h3 class="project-title">Abandoned Outpost</h3>
           <p class="project-desc">A seamless integration of 3D elements into a live-action plate, featuring precise camera tracking, realistic lighting matches, and depth of field.</p>
           <a href="#" class="project-link" data-open-modal="outpost">Explore details &rarr;</a>
         </div>
+      </div>
 
-        <!-- Project 2 -->
-        <div class="glass-card project-card" data-project="drone">
-          <div class="project-img-wrapper">
-            <video class="project-img project-video-preview" loop muted playsinline preload="auto">
-              <source src="assets/drone.mp4" type="video/mp4">
-            </video>
-          </div>
+      <!-- Project 2 -->
+      <div class="project-card" data-project="drone">
+        <div class="project-img-wrapper">
+          <video class="project-img project-video-preview" loop muted playsinline preload="auto">
+            <source src="assets/drone.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="project-body">
           <div class="project-tags">
             <span class="tag">Maya</span>
             <span class="tag">Matchmoving</span>
             <span class="tag">VFX</span>
-            <span class="tag">Compositing</span>
             <span class="tag">After Effects</span>
           </div>
           <h3 class="project-title">Urban Drone Integration</h3>
-          <p class="project-desc">A complex visual effects integration utilizing a multi-software pipeline with precise camera tracking, 3D blocking, and multi-pass AOV rendering.</p>
+          <p class="project-desc">A complex VFX integration utilizing a multi-software pipeline with precise camera tracking, 3D blocking, and multi-pass AOV rendering.</p>
           <a href="#" class="project-link" data-open-modal="drone">Explore details &rarr;</a>
         </div>
+      </div>
 
-        <!-- Project 3 -->
-        <div class="glass-card project-card" data-project="corridor">
-          <div class="project-img-wrapper">
-            <video class="project-img project-video-preview" loop muted playsinline preload="auto">
-              <source src="assets/corridor_vfx_render_final.mp4" type="video/mp4">
-            </video>
-          </div>
+      <!-- Project 3 -->
+      <div class="project-card" data-project="corridor">
+        <div class="project-img-wrapper">
+          <video class="project-img project-video-preview" loop muted playsinline preload="auto">
+            <source src="assets/corridor_vfx_render_final.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="project-body">
           <div class="project-tags">
             <span class="tag">Maya</span>
             <span class="tag">After Effects</span>
@@ -188,181 +221,150 @@
             <span class="tag">Compositing</span>
           </div>
           <h3 class="project-title">Sci-Fi Corridor VFX Integration</h3>
-          <p class="project-desc">A live-action visual effects shot featuring integrated 3D pipeline fixtures and wall props, paired with heavy digital distortion and RGB displacement transitions.</p>
+          <p class="project-desc">A live-action VFX shot featuring integrated 3D pipeline fixtures and wall props, paired with heavy digital distortion and RGB displacement transitions.</p>
           <a href="#" class="project-link" data-open-modal="corridor">Explore details &rarr;</a>
         </div>
+      </div>
 
-        <!-- Project 4 -->
-        <div class="glass-card project-card" data-project="alienPlanet">
-          <div class="project-img-wrapper">
-            <video class="project-img project-video-preview" loop muted playsinline preload="auto">
-              <source src="assets/Off_Grid_Alien_Planet.mp4" type="video/mp4">
-            </video>
-          </div>
+      <!-- Project 4 -->
+      <div class="project-card" data-project="alienPlanet">
+        <div class="project-img-wrapper">
+          <video class="project-img project-video-preview" loop muted playsinline preload="auto">
+            <source src="assets/Off_Grid_Alien_Planet.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="project-body">
           <div class="project-tags">
             <span class="tag">Maya</span>
             <span class="tag">Matchmoving</span>
             <span class="tag">VFX</span>
-            <span class="tag">Compositing</span>
             <span class="tag">After Effects</span>
           </div>
           <h3 class="project-title">Off-Grid Alien Planet Integration</h3>
-          <p class="project-desc">A cinematic visual effects shot depicting an astronaut exploring a rugged alien landscape featuring a derailed metallic train.</p>
+          <p class="project-desc">A cinematic VFX shot depicting an astronaut exploring a rugged alien landscape featuring a derailed metallic train.</p>
           <a href="#" class="project-link" data-open-modal="alienPlanet">Explore details &rarr;</a>
         </div>
+      </div>
 
-        <!-- Project 5 -->
-        <div class="glass-card project-card" data-project="triceratops">
-          <div class="project-img-wrapper">
-            <video class="project-img project-video-preview" loop muted playsinline preload="auto">
-              <source src="assets/triceratops_vfx_shot_main.mp4" type="video/mp4">
-            </video>
-          </div>
+      <!-- Project 5 -->
+      <div class="project-card" data-project="triceratops">
+        <div class="project-img-wrapper">
+          <video class="project-img project-video-preview" loop muted playsinline preload="auto">
+            <source src="assets/triceratops_vfx_shot_main.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="project-body">
           <div class="project-tags">
             <span class="tag">Maya</span>
             <span class="tag">After Effects</span>
             <span class="tag">3D Animation</span>
             <span class="tag">VFX</span>
-            <span class="tag">Compositing</span>
           </div>
           <h3 class="project-title">Prehistoric Intrusion: Skeletal Triceratops</h3>
           <p class="project-desc">A seamless VFX shot featuring a walking skeletal Triceratops traversing an ancient stone ruin environment.</p>
           <a href="#" class="project-link" data-open-modal="triceratops">Explore details &rarr;</a>
         </div>
+      </div>
 
-        <!-- Project Placeholder -->
-        <div class="glass-card project-card placeholder-card" style="opacity: 0.55; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 420px; border: 1px dashed var(--border-glass); text-align: center; pointer-events: none; padding: 2rem;">
-          <div style="width: 50px; height: 50px; border-radius: 50%; border: 1px dashed var(--accent-pink); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; animation: rotateDashed 8s linear infinite;">
-            <span style="color: var(--accent-pink); font-size: 1.2rem; font-weight: bold;">+</span>
-          </div>
-          <h3 class="project-title" style="color: var(--text-muted); font-size: 1.15rem; font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; text-shadow: 0 0 10px rgba(255, 0, 127, 0.15);">Transmission Pending</h3>
-          <p class="project-desc" style="font-size: 0.85rem; max-width: 250px; color: rgba(160, 170, 178, 0.55); line-height: 1.5; margin: 0 auto;">New environment assets, VFX matchmoves, and pipeline breakdowns currently rendering in the grid.</p>
-        </div>
-
+      <!-- Placeholder -->
+      <div class="placeholder-card">
+        <div class="placeholder-icon">+</div>
+        <h3 class="project-title" style="color: #333; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem;">Transmission Pending</h3>
+        <p style="font-size: 0.82rem; color: #2a2a2a; line-height: 1.5;">New environment assets, VFX matchmoves, and pipeline breakdowns currently rendering in the grid.</p>
       </div>
     </div>
   </section>
 
-  <!-- Skills Section -->
+  <!-- ─── SKILLS ─── -->
   <section id="skills">
-    <div class="container">
-      <h2 class="section-title">Technical <span>Skills</span></h2>
-      <div class="skills-container">
-        <div class="skills-content">
-          <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem;">I utilize an industry-standard production pipeline to bring cinematic visual concepts to life. My toolkit spans pre-production design, core 3D asset creation, precise camera tracking, and final compositing. Feel free to interact with and spin the skills cloud to the right.</p>
-          <div class="skills-list">
-            <div class="glass-card">
-              <div class="skill-icon-placeholder">MY</div>
-              <div>
-                <h4 style="font-family: var(--font-heading);">Autodesk Maya</h4>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">3D Modeling, Scene Blocking, Lighting</p>
-              </div>
+    <div class="skills-bento">
+      <div>
+        <span class="section-label reveal">Technical Skills</span>
+        <h2 class="section-title reveal">My <span>Toolkit</span></h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;" class="reveal">I utilize an industry-standard production pipeline to bring cinematic visual concepts to life. Feel free to interact with and spin the skills cloud.</p>
+        <div class="skills-list reveal-stagger">
+          <div class="skill-card">
+            <div class="skill-icon">MY</div>
+            <div>
+              <h4>Autodesk Maya</h4>
+              <p>3D Modeling, Scene Blocking, Lighting</p>
             </div>
-            <div class="glass-card">
-              <div class="skill-icon-placeholder">AE</div>
-              <div>
-                <h4 style="font-family: var(--font-heading);">After Effects</h4>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">VFX Compositing, Tracking, Grading</p>
-              </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">AE</div>
+            <div>
+              <h4>After Effects</h4>
+              <p>VFX Compositing, Tracking, Grading</p>
             </div>
-            <div class="glass-card">
-              <div class="skill-icon-placeholder">SP</div>
-              <div>
-                <h4 style="font-family: var(--font-heading);">Substance Painter</h4>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">PBR Texturing, Material Generation</p>
-              </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">SP</div>
+            <div>
+              <h4>Substance Painter</h4>
+              <p>PBR Texturing, Material Generation</p>
             </div>
-            <div class="glass-card">
-              <div class="skill-icon-placeholder">PS</div>
-              <div>
-                <h4 style="font-family: var(--font-heading);">Adobe Photoshop</h4>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">Storyboarding, Digital Design, Matte Painting</p>
-              </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">PS</div>
+            <div>
+              <h4>Adobe Photoshop</h4>
+              <p>Storyboarding, Matte Painting</p>
             </div>
           </div>
         </div>
-        <div class="skills-canvas-wrapper glass-card">
-          <canvas id="skills-3d-canvas"></canvas>
+      </div>
+      <div class="skills-canvas-wrapper reveal-right">
+        <canvas id="skills-3d-canvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── EXPERIENCE ─── -->
+  <section id="experience">
+    <div class="experience-bento">
+      <div class="experience-intro-card reveal-left">
+        <span class="section-label">Professional Journey</span>
+        <div class="big-year">2024</div>
+        <h2 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 1rem; position: relative; z-index: 1;">Building a Pipeline,<br><span style="color: var(--accent-purple);">One Shot at a Time.</span></h2>
+        <p>From hands-on studio internships to freelance VFX work, my journey has been shaped by building a complete understanding of the production pipeline.</p>
+      </div>
+
+      <div class="timeline-cards reveal-stagger">
+        <div class="timeline-card">
+          <div class="timeline-date">April 2026 — May 2026</div>
+          <h3 class="timeline-title">3D & Matchmove Intern</h3>
+          <div class="timeline-company">Digi Bricks // Ernakulam</div>
+          <p>Gained hands-on studio experience focusing on core 3D design tasks and asset workflows. Completed production tasks and worked on a live-action shot for camera tracking.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-date">2024 — Present</div>
+          <h3 class="timeline-title">Freelance 3D Generalist & VFX Artist</h3>
+          <div class="timeline-company">Self-Employed // Remote</div>
+          <p>Managing an end-to-end creative pipeline for independent projects and video creators. From pre-production storyboarding and digital design to high-fidelity asset texturing and VFX compositing.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-date">2024 — Present</div>
+          <h3 class="timeline-title">Animation & VFX Student</h3>
+          <div class="timeline-company">St. Joseph College of Communication</div>
+          <p>Developing a foundation in visual storytelling, 3D asset pipelines, and content creation. Collaborating as a 3D and compositing artist on multi-discipline team productions and short film projects.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="experience" class="experience-section">
-
-    <!-- Left floating tool column -->
-    <div class="exp-float-col exp-float-left" aria-hidden="true">
-      <span class="exp-float-tag" style="--d:0s;   --x:10%">Maya</span>
-      <span class="exp-float-tag" style="--d:2s;   --x:55%">After Effects</span>
-      <span class="exp-float-tag" style="--d:4s;   --x:20%">Matchmoving</span>
-      <span class="exp-float-tag" style="--d:1s;   --x:70%">3DEqualizer</span>
-      <span class="exp-float-tag" style="--d:5s;   --x:35%">Blender</span>
-      <span class="exp-float-tag" style="--d:3s;   --x:5%" >Compositing</span>
-      <span class="exp-float-tag" style="--d:6s;   --x:60%">AOV Render</span>
-      <span class="exp-float-tag" style="--d:7s;   --x:25%">Maya</span>
-      <span class="exp-float-tag" style="--d:8s;   --x:50%">Photoshop</span>
-    </div>
-
-    <!-- Right floating tool column -->
-    <div class="exp-float-col exp-float-right" aria-hidden="true">
-      <span class="exp-float-tag" style="--d:1s;   --x:40%">Substance Painter</span>
-      <span class="exp-float-tag" style="--d:3s;   --x:15%">PBR Texturing</span>
-      <span class="exp-float-tag" style="--d:0s;   --x:65%">Camera Track</span>
-      <span class="exp-float-tag" style="--d:5s;   --x:30%">Lighting</span>
-      <span class="exp-float-tag" style="--d:2s;   --x:80%">Storyboard</span>
-      <span class="exp-float-tag" style="--d:6s;   --x:10%">VFX Pipeline</span>
-      <span class="exp-float-tag" style="--d:4s;   --x:55%">Hard Surface</span>
-      <span class="exp-float-tag" style="--d:7s;   --x:35%">Illustrator</span>
-      <span class="exp-float-tag" style="--d:8.5s; --x:70%">Color Grade</span>
-    </div>
-
-    <div class="container">
-      <h2 class="section-title">Professional <span>Journey</span></h2>
-      <div class="timeline">
-        <!-- Item 1 -->
-        <div class="timeline-item left">
-          <div class="glass-card">
-            <div class="timeline-date">April 2026 - May 2026</div>
-            <h3 class="timeline-title">3D &amp; Matchmove Intern</h3>
-            <div class="timeline-company">Digi Bricks // Ernakulam</div>
-            <p style="font-size: 0.95rem; color: var(--text-muted);">Gained hands-on studio experience focusing on core 3D design tasks and asset workflows. Completed production tasks and worked on a simple live-action shot for camera tracking.</p>
-          </div>
-        </div>
-        <!-- Item 2 -->
-        <div class="timeline-item right">
-          <div class="glass-card">
-            <div class="timeline-date">2024 - Present</div>
-            <h3 class="timeline-title">Freelance 3D Generalist &amp; VFX Artist</h3>
-            <div class="timeline-company">Self-Employed // Remote</div>
-            <p style="font-size: 0.95rem; color: var(--text-muted);">Managing an end-to-end creative pipeline for independent projects and video creators. Spearheaded projects from pre-production storyboarding and digital design in Photoshop to high-fidelity asset texturing in Substance Painter and visual effects compositing in After Effects.</p>
-          </div>
-        </div>
-        <!-- Item 3 -->
-        <div class="timeline-item left">
-          <div class="glass-card">
-            <div class="timeline-date">2024 - Present</div>
-            <h3 class="timeline-title">Animation &amp; VFX Student</h3>
-            <div class="timeline-company">St. Joseph College of Communication</div>
-            <p style="font-size: 0.95rem; color: var(--text-muted);">Developing a foundation in visual storytelling, 3D asset pipelines, and content creation. Collaborating as a 3D and compositing artist on multi-discipline team productions and short film projects.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-
+  <!-- ─── CONTACT ─── -->
   <section id="contact">
-    <div class="container">
-      <h2 class="section-title">Start a <span>Project</span></h2>
-      <div class="contact-container">
-        <div class="contact-info glass-card">
-          <p style="color: var(--text-muted); font-size: 1.1rem;">Have an exciting concept or interactive project in mind? Let's team up to build something remarkable. Drop a message or find me on socials.</p>
+    <div class="contact-bento">
+      <div class="contact-headline-card reveal-left">
+        <span class="section-label">Contact</span>
+        <h2>Start a <span style="color: var(--accent-orange);">Project.</span></h2>
+        <p>Have an exciting concept or interactive project in mind? Let's team up to build something remarkable. Drop a message or find me on socials.</p>
+        <div class="contact-info-list">
           <div class="contact-info-item">
             <div class="contact-icon">@</div>
             <div class="contact-details">
               <h4>Email</h4>
-              <p><a href="mailto:junaid4433ss@gmail.com">junaid4433ss@gmail.com</a></p>
+              <a href="mailto:junaid4433ss@gmail.com">junaid4433ss@gmail.com</a>
             </div>
           </div>
           <div class="contact-info-item">
@@ -372,56 +374,56 @@
               <p><a href="https://instagram.com/ssjunaidss" target="_blank">@ssjunaidss</a> &bull; <a href="https://instagram.com/junualmostreal" target="_blank">@junualmostreal</a></p>
             </div>
           </div>
-
           <div class="contact-info-item">
             <div class="contact-icon">&#9670;</div>
             <div class="contact-details">
               <h4>Location</h4>
-              <p>EastPark Villas, Menamkulam,<br>Thiruvananthapuram, Kerala 695586</p>
+              <p>Thiruvananthapuram, Kerala, India</p>
             </div>
           </div>
         </div>
-        <div class="glass-card">
-          <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-            <!-- Web3Forms Configuration -->
-            <input type="hidden" name="access_key" value="768c4872-db19-42eb-a832-be35d09b71ce">
-            <input type="hidden" name="subject" value="New Portfolio Message - Junaid S Portfolio">
-            <input type="hidden" name="from_name" value="Junaid S Portfolio">
-            <input type="hidden" name="redirect" value="false">
-            <div class="form-group">
-              <input type="text" class="form-control" id="form-name" name="name" placeholder="Your Name" required>
-            </div>
-            <div class="form-group">
-              <input type="email" class="form-control" id="form-email" name="email" placeholder="Email Address" required>
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" id="form-message" name="message" placeholder="Describe your vision..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary" id="submit-btn" style="width: 100%;">Submit</button>
-          </form>
-        </div>
+      </div>
+
+      <div class="contact-form-card reveal-right">
+        <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="768c4872-db19-42eb-a832-be35d09b71ce">
+          <input type="hidden" name="subject" value="New Portfolio Message - Junaid S Portfolio">
+          <input type="hidden" name="from_name" value="Junaid S Portfolio">
+          <input type="hidden" name="redirect" value="false">
+          <div class="form-group">
+            <label class="form-label" for="form-name">Your Name</label>
+            <input type="text" class="form-control" id="form-name" name="name" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="form-email">Email Address</label>
+            <input type="email" class="form-control" id="form-email" name="email" placeholder="john@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="form-message">Message</label>
+            <textarea class="form-control" id="form-message" name="message" placeholder="Describe your vision..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="submit-btn" style="width: 100%;">Send Message</button>
+        </form>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2026 JUNAID S. Crafted with passion, math, and vertices. Built on <a href="https://threejs.org/" target="_blank">Three.js</a>.</p>
+    <p>&copy; 2026 JUNAID S. Crafted with passion, math, and vertices. Built with <a href="https://threejs.org/" target="_blank">Three.js</a>.</p>
   </footer>
 
   <!-- Project Details Modals -->
   <div class="modal-overlay" id="project-modal">
-    <div class="glass-card modal-content">
+    <div class="modal-content" id="modal-content-wrapper">
       <button class="modal-close" id="modal-close">&times;</button>
-      <div class="modal-body" id="modal-body-content">
-        <!-- Rendered dynamically by JavaScript -->
-      </div>
+      <div class="modal-body" id="modal-body-content"></div>
     </div>
   </div>
 
-  <!-- Loading Scripts -->
-  <script type="module" src="js/canvas.js?v=2"></script>
-  <script type="module" src="js/skills-sphere.js?v=2"></script>
-  <script type="module" src="js/main.js?v=2"></script>
+  <!-- Scripts -->
+  <script type="module" src="js/skills-sphere.js?v=3"></script>
+  <script type="module" src="js/main.js?v=3"></script>
+
 </body>
 </html>

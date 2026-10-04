@@ -16,9 +16,7 @@ const projectData = {
       'Custom lighting setup matched to the original high-dynamic-range (HDR) background plate.',
       'Deep compositing in After Effects including accurate depth map extraction and atmospheric effects.',
       'Seamless integration of distressed 3D elements with shadows, reflections, and contact occlusion.'
-    ],
-    liveLink: '#',
-    codeLink: '#'
+    ]
   },
   drone: {
     title: 'Urban Drone Integration',
@@ -33,9 +31,7 @@ const projectData = {
       'Advanced lighting integration matching shadow direction, color temperature, and contact occlusions.',
       'Multi-pass AOV rendering (diffuse, specular, refraction, shadow, Z-depth) out of Maya.',
       'Final compositing, color matching, grain integration, and color grading in After Effects.'
-    ],
-    liveLink: '#',
-    codeLink: '#'
+    ]
   },
   corridor: {
     title: 'Sci-Fi Corridor VFX Integration',
@@ -49,9 +45,7 @@ const projectData = {
       'Extracted camera tracking data in After Effects to align 3D assets with the live-action hallway movement.',
       'Integrated custom 3D pipe structures and wall-mounted props modeled and lit in Maya into the plate.',
       'Applied custom glitch animations, chromatic aberration, wave distortion, and digital noise passes in After Effects for the transition sequence.'
-    ],
-    liveLink: '#',
-    codeLink: '#'
+    ]
   },
   alienPlanet: {
     title: 'Off-Grid Alien Planet Integration',
@@ -66,9 +60,7 @@ const projectData = {
       'Built and textured a full 3D sci-fi landscape in Maya, including rocky terrain, mountains, and a derailed train asset.',
       'Matched directional key lighting, contact shadows, and environmental reflections across the suit and visor.',
       'Composited anamorphic lens flares, dust particles, and atmospheric depth passes in After Effects.'
-    ],
-    liveLink: '#',
-    codeLink: '#'
+    ]
   },
   triceratops: {
     title: 'Prehistoric Intrusion: Skeletal Triceratops VFX Breakdown',
@@ -82,13 +74,12 @@ const projectData = {
       'Accurate camera and perspective tracking executed in After Effects.',
       'Detailed 3D modeling, skeletal rigging, and scene lighting built and rendered in Maya.',
       'Polished multi-pass digital compositing integrating realistic shadows, ground interaction, and dust elements in After Effects.'
-    ],
-    liveLink: '#',
-    codeLink: '#'
+    ]
   }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+  setupScrollReveal();
   setupScrollEffects();
   setupProjectModals();
   setupContactForm();
@@ -97,33 +88,33 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMobileMenu();
 });
 
-// 2. GSAP Scroll Animations
-function setupScrollEffects() {
-  // Hero load animations
-  gsap.from('.hero-subtitle', { opacity: 0, y: 30, duration: 1.2, ease: 'power4.out', delay: 0.2 });
-  gsap.from('.hero-title', { opacity: 0, y: 40, duration: 1.2, ease: 'power4.out', delay: 0.4 });
-  gsap.from('.hero-description', { opacity: 0, y: 30, duration: 1.2, ease: 'power4.out', delay: 0.6 });
-  gsap.from('.btn-group', { opacity: 0, y: 20, duration: 1.2, ease: 'power4.out', delay: 0.8 });
+// 1. Scroll Reveal Animation with IntersectionObserver
+function setupScrollReveal() {
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-stagger');
 
-  // Fade-in headings and cards on scroll
-  const scrollElements = document.querySelectorAll('.section-title, .glass-card');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        gsap.to(entry.target, { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: 'power3.out' });
+        entry.target.classList.add('visible');
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.12 });
 
-  scrollElements.forEach(elem => {
-    // Set initial transparent state before scroll trigger
-    gsap.set(elem, { opacity: 0, y: 45 });
-    observer.observe(elem);
-  });
+  revealEls.forEach(el => observer.observe(el));
 }
 
-// 3. Project Detail Modals Mapping
+// 2. GSAP Hero Entrance Animations
+function setupScrollEffects() {
+  gsap.from('.hero-eyebrow', { opacity: 0, y: 20, duration: 1, ease: 'power4.out', delay: 0.2 });
+  gsap.from('.hero-title', { opacity: 0, y: 40, duration: 1.2, ease: 'power4.out', delay: 0.35 });
+  gsap.from('.hero-description', { opacity: 0, y: 25, duration: 1, ease: 'power4.out', delay: 0.55 });
+  gsap.from('.hero-cta-row', { opacity: 0, y: 20, duration: 1, ease: 'power4.out', delay: 0.7 });
+  gsap.from('.hero-stats', { opacity: 0, y: 20, duration: 1, ease: 'power4.out', delay: 0.85 });
+  gsap.from('.hero-profile-card', { opacity: 0, x: 40, duration: 1.2, ease: 'power4.out', delay: 0.4 });
+}
+
+// 3. Project Detail Modals
 function setupProjectModals() {
   const modal = document.getElementById('project-modal');
   const modalClose = document.getElementById('modal-close');
@@ -140,52 +131,50 @@ function setupProjectModals() {
 
       if (data) {
         modalBody.innerHTML = `
-          <h2 class="section-title" style="margin-bottom: 0.5rem; font-size: 2.2rem;">${data.title}</h2>
-          <h4 style="font-family: var(--font-heading); color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">${data.subtitle}</h4>
-          
+          <h2 style="font-family: var(--font-heading); font-size: 1.9rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 0.4rem;">${data.title}</h2>
+          <h4 style="font-family: var(--font-heading); color: var(--accent-orange); text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; margin-bottom: 1.25rem;">${data.subtitle}</h4>
+
           <div style="position: relative; width: 100%;">
             ${data.breakdown ? `
-              <div id="modal-breakdown-badge" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255, 0, 127, 0.25); border: 1px solid var(--accent-pink); color: #fff; padding: 0.4rem 0.8rem; border-radius: 30px; font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; z-index: 10; box-shadow: 0 0 10px rgba(255, 0, 127, 0.4); display: flex; align-items: center; gap: 0.25rem; cursor: pointer; transition: all 0.2s ease;">
-                <span>Breakdown Below</span> <span class="badge-arrow" style="font-size: 0.85rem; line-height: 1; display: inline-block;">&darr;</span>
+              <div id="modal-breakdown-badge" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255, 92, 0, 0.2); border: 1px solid var(--accent-orange); color: #fff; padding: 0.4rem 0.8rem; border-radius: 30px; font-family: var(--font-heading); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; z-index: 10; display: flex; align-items: center; gap: 0.25rem; cursor: pointer; transition: all 0.2s ease;">
+                <span>Breakdown Below</span> <span class="badge-arrow" style="font-size: 0.85rem; display: inline-block;">&darr;</span>
               </div>
             ` : ''}
-            
+
             ${data.video ? `
-              <video class="modal-img" autoplay loop muted playsinline controls style="object-fit: cover; width: 100%; max-height: 350px; border-radius: 12px; margin-bottom: 0.5rem; display: block;">
+              <video autoplay loop muted playsinline controls style="width: 100%; max-height: 350px; border-radius: 14px; margin-bottom: 0.5rem; display: block; object-fit: cover;">
                 <source src="${data.video}" type="video/mp4">
               </video>
             ` : `
-              <img class="modal-img" src="${data.img}" alt="${data.title}" style="display: block; width: 100%; max-height: 350px; border-radius: 12px; object-fit: cover; margin-bottom: 0.5rem;">
+              <img src="${data.img}" alt="${data.title}" style="display: block; width: 100%; max-height: 350px; border-radius: 14px; object-fit: cover; margin-bottom: 0.5rem;">
             `}
           </div>
-          
+
           <div class="modal-tech-stack">
             ${data.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
           </div>
-          
-          <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 1rem;">${data.description}</p>
-          
+
+          <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.75; margin-bottom: 1.25rem;">${data.description}</p>
+
           <div style="margin-bottom: 1.5rem;">
-            <h4 style="font-family: var(--font-heading); color: var(--text-main); margin-bottom: 0.75rem;">Key Engineering Highlights:</h4>
-            <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 0.5rem; color: var(--text-muted); font-size: 0.95rem;">
-              ${data.features.map(f => `<li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--accent-cyan);">&#9670;</span>${f}</li>`).join('')}
+            <h4 style="font-family: var(--font-heading); font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.75rem;">Key Highlights</h4>
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; color: var(--text-muted); font-size: 0.92rem;">
+              ${data.features.map(f => `<li style="position: relative; padding-left: 1.5rem;"><span style="position: absolute; left: 0; color: var(--accent-orange);">&#9670;</span>${f}</li>`).join('')}
             </ul>
           </div>
 
           ${data.breakdown ? `
-            <div id="modal-breakdown-section" style="margin-top: 1.5rem; border-top: 1px solid var(--border-glass); padding-top: 1.5rem; margin-bottom: 1rem;">
-              <h4 style="font-family: var(--font-heading); color: var(--accent-cyan); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;">VFX Breakdown:</h4>
-              <video class="modal-img" loop muted playsinline controls style="object-fit: cover; width: 100%; max-height: 350px; border-radius: 12px;">
+            <div id="modal-breakdown-section" style="margin-top: 1.5rem; border-top: 1px solid #1e1e1e; padding-top: 1.5rem;">
+              <h4 style="font-family: var(--font-heading); color: var(--accent-orange); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-size: 0.78rem;">VFX Breakdown</h4>
+              <video loop muted playsinline controls style="width: 100%; max-height: 350px; border-radius: 14px; object-fit: cover; display: block;">
                 <source src="${data.breakdown}" type="video/mp4">
               </video>
             </div>
           ` : ''}
         `;
-        
-        // Open Modal
+
         modal.classList.add('active');
-        
-        // Scroll smoothly to breakdown section on badge click
+
         const breakdownBadge = modal.querySelector('#modal-breakdown-badge');
         const breakdownSec = modal.querySelector('#modal-breakdown-section');
         if (breakdownBadge && breakdownSec) {
@@ -193,37 +182,30 @@ function setupProjectModals() {
             breakdownSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
           });
         }
-        
-        
-        document.body.style.overflow = 'hidden'; // Stop background scrolling
+
+        document.body.style.overflow = 'hidden';
       }
     });
   });
 
-  // Close modal logic
   const closeModalFunc = () => {
     modal.classList.remove('active');
     document.body.style.overflow = '';
   };
 
   modalClose.addEventListener('click', closeModalFunc);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModalFunc();
-  });
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('active')) closeModalFunc();
-  });
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
+  window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeModalFunc(); });
 }
 
-// 4. Custom Contact Form Handling and Feedback Alert
+// 4. Contact Form
 function setupContactForm() {
   const form = document.getElementById('contact-form');
   const submitBtn = document.getElementById('submit-btn');
   if (!form) return;
 
   form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Stop native form submission / page redirect
-
+    e.preventDefault();
     const name = document.getElementById('form-name').value.trim();
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Sending...';
@@ -239,17 +221,10 @@ function setupContactForm() {
         body: JSON.stringify(data)
       });
       const json = await res.json();
-
-      if (res.ok && json.success) {
-        showToast(name, false);
-        form.reset();
-      } else {
-        showToast(name, true);
-        console.error('Web3Forms error:', json);
-      }
+      if (res.ok && json.success) { showToast(name, false); form.reset(); }
+      else { showToast(name, true); }
     } catch (err) {
       showToast(name, true);
-      console.error('Network error:', err);
     } finally {
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
@@ -259,93 +234,57 @@ function setupContactForm() {
 
 function showToast(name, isError = false) {
   const toast = document.createElement('div');
-  toast.className = 'glass-card';
-  toast.style.position = 'fixed';
-  toast.style.bottom = '2rem';
-  toast.style.right = '2rem';
-  toast.style.zIndex = '9999';
-  toast.style.borderLeft = isError ? '4px solid var(--accent-pink)' : '4px solid var(--accent-cyan)';
-  toast.style.padding = '1.25rem 2rem';
-  toast.style.opacity = '0';
-  toast.style.transform = 'translateY(20px)';
-  toast.style.transition = 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-  
-  if (isError) {
-    toast.innerHTML = `
-      <h4 style="font-family: var(--font-heading); color: var(--accent-pink); margin-bottom: 0.25rem;">Transmission Failed</h4>
-      <p style="font-size: 0.9rem; color: var(--text-main);">Sorry ${name}, there was an issue. Please try again or email me directly.</p>
-    `;
-  } else {
-    toast.innerHTML = `
-      <h4 style="font-family: var(--font-heading); color: var(--accent-cyan); margin-bottom: 0.25rem;">Pipeline Connection Established</h4>
-      <p style="font-size: 0.9rem; color: var(--text-main);">Thanks, ${name}! Your request has been queued in my pipeline.</p>
-    `;
-  }
+  toast.style.cssText = `
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
+    background: #111; border-left: 3px solid ${isError ? '#ff5c00' : '#00d4ff'};
+    border-radius: 12px; padding: 1.25rem 1.75rem;
+    opacity: 0; transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+    font-family: var(--font-body); min-width: 280px;
+  `;
+  toast.innerHTML = isError
+    ? `<h4 style="font-family: var(--font-heading); color: var(--accent-orange); margin-bottom: 0.2rem; font-size: 0.95rem;">Transmission Failed</h4><p style="font-size: 0.85rem; color: var(--text-muted);">Sorry ${name}, there was an issue. Please try again.</p>`
+    : `<h4 style="font-family: var(--font-heading); color: #00d4ff; margin-bottom: 0.2rem; font-size: 0.95rem;">Message Sent!</h4><p style="font-size: 0.85rem; color: var(--text-muted);">Thanks, ${name}! I'll get back to you soon.</p>`;
 
   document.body.appendChild(toast);
-
+  setTimeout(() => { toast.style.opacity = '1'; toast.style.transform = 'translateY(0)'; }, 100);
   setTimeout(() => {
-    toast.style.opacity = '1';
-    toast.style.transform = 'translateY(0)';
-  }, 100);
-
-  setTimeout(() => {
-    toast.style.opacity = '0';
-    toast.style.transform = 'translateY(20px)';
-    setTimeout(() => {
-      toast.remove();
-    }, 400);
+    toast.style.opacity = '0'; toast.style.transform = 'translateY(20px)';
+    setTimeout(() => toast.remove(), 400);
   }, 4500);
 }
 
-// 5. Navigation Links Center Highlight on Scroll
+// 5. Navigation Highlighting on Scroll
 function setupNavigationHighlighting() {
   const sections = document.querySelectorAll('section');
   const navLinks = document.querySelectorAll('nav a, .mobile-nav-link');
 
   window.addEventListener('scroll', () => {
     let currentSectionId = '';
-
     sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
-      
-      // Highlight nav when page scrolled past section's top half
-      if (window.scrollY >= sectionTop - sectionHeight / 2.5) {
+      if (window.scrollY >= section.offsetTop - section.clientHeight / 2.5) {
         currentSectionId = section.getAttribute('id');
       }
     });
-
     navLinks.forEach(link => {
       link.classList.remove('active');
-      if (link.getAttribute('href') === `#${currentSectionId}`) {
-        link.classList.add('active');
-      }
+      if (link.getAttribute('href') === `#${currentSectionId}`) link.classList.add('active');
     });
   });
 }
 
-// 6. Hover-to-Play Video Preview on Project Cards
+// 6. Video Preview on Hover
 function setupProjectVideoPreviews() {
   const cards = document.querySelectorAll('.project-card');
   cards.forEach(card => {
     const video = card.querySelector('.project-video-preview');
     if (!video) return;
-
-    card.addEventListener('mouseenter', () => {
-      video.play().catch(err => {
-        console.log("Video playback was interrupted or blocked:", err);
-      });
-    });
-
-    card.addEventListener('mouseleave', () => {
-      video.pause();
-      video.currentTime = 0; // Reset to first frame immediately
-    });
+    card.addEventListener('mouseenter', () => video.play().catch(() => {}));
+    card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
   });
 }
 
-// 7. Mobile Navigation Drawer Toggle Handler
+// 7. Mobile Navigation Drawer
 function setupMobileMenu() {
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
@@ -356,18 +295,10 @@ function setupMobileMenu() {
   const toggleMenu = () => {
     const isOpen = mobileMenuBtn.classList.toggle('active');
     mobileNavOverlay.classList.toggle('active', isOpen);
-    
-    // Disable or enable background scrolling when overlay is active
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   };
 
   mobileMenuBtn.addEventListener('click', toggleMenu);
-
-  // Close menu when a navigation link is clicked
   mobileNavLinks.forEach(link => {
     link.addEventListener('click', () => {
       mobileMenuBtn.classList.remove('active');
@@ -376,4 +307,3 @@ function setupMobileMenu() {
     });
   });
 }
-
