@@ -1192,67 +1192,192 @@ footer a {
 }
 
 /* ─── RESPONSIVE ──────────────────────────── */
+
+/* Tablet (1024px) */
 @media (max-width: 1024px) {
-  .hero-fullbleed {
-    height: 660px;
-  }
-  .hero-bg-img {
-    height: 94%;
-    left: 55%;
-  }
-  .hero-title {
-    font-size: 3.8rem;
-  }
+  section { padding: 5rem 5%; }
+
+  /* Hero */
+  .hero-fullbleed { height: 640px; min-height: 580px; }
+  .hero-bg-img { height: 92%; left: 58%; }
+  .hero-title { font-size: 3.6rem; }
+  .hero-text-overlay { max-width: 55%; }
+
+  /* About */
   .about-bento { grid-template-columns: 1fr; }
-  .about-approach-card { grid-template-columns: 1fr; gap: 1.5rem; }
+  .about-headline-card { min-height: 240px; }
+  .about-approach-card { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+  /* Skills */
   .skills-bento { grid-template-columns: 1fr; }
+  .skills-canvas-wrapper { height: 360px; }
+
+  /* Experience */
   .experience-bento { grid-template-columns: 1fr; }
   .experience-intro-card { position: static; }
+
+  /* Contact */
   .contact-bento { grid-template-columns: 1fr; }
 }
 
+/* Mobile (768px) */
 @media (max-width: 768px) {
-  section { padding: 4rem 5%; }
+  section { padding: 4rem 4% 3rem; }
+
+  /* Header */
+  header { padding: 1rem 5%; }
   .mobile-menu-btn { display: flex; }
   nav { display: none; }
+
+  /* Hero */
+  #home { padding-top: 4.5rem; }
   .hero-fullbleed {
     height: auto;
-    min-height: 580px;
-    padding-top: 3rem;
+    min-height: 100svh;
+    border-radius: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
   }
   .hero-bg-img {
-    height: 80%;
+    height: 100%;
     left: 50%;
-    opacity: 0.5;
+    opacity: 0.35;
   }
-  .hero-quote {
-    display: none;
+  .hero-gradient-left {
+    background: linear-gradient(180deg,
+      rgba(10,10,10,0.85) 0%,
+      rgba(10,10,10,0.65) 50%,
+      rgba(10,10,10,0.92) 100%
+    );
   }
+  .hero-gradient-bottom { height: 50%; }
+  .hero-quote { display: none; }
   .hero-text-overlay {
-    padding: 0 1.5rem 1.5rem;
+    padding: 0 1.25rem 1.5rem;
+    max-width: 100%;
   }
   .hero-title {
-    font-size: 2.6rem;
-    letter-spacing: -1.5px;
+    font-size: 2.8rem;
+    letter-spacing: -2px;
+    margin-bottom: 1.5rem;
   }
-  .hero-stat-bar {
-    flex-wrap: wrap;
-  }
+  .hero-cta-row { gap: 0.75rem; }
+  .hero-stat-bar { flex-wrap: wrap; }
   .hero-stat-pill {
     flex: 1 1 50%;
-    padding: 0.8rem 1rem;
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
   }
-  .section-title { font-size: 2rem; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .about-approach-card { grid-template-columns: 1fr; }
-  .skills-list { grid-template-columns: 1fr; }
-  .projects-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .hero-stat-index { font-size: 0.65rem; }
+  .hero-stat-name { font-size: 0.72rem; letter-spacing: 0.5px; }
+
+  /* Section titles */
+  .section-title { font-size: 2rem; letter-spacing: -1px; }
+  .section-label { font-size: 0.72rem; }
+
+  /* About */
+  .about-bento { grid-template-columns: 1fr; gap: 1rem; }
+  .about-headline-card {
+    min-height: 200px;
+    padding: 2rem;
+  }
+  .about-headline-card .big-text { font-size: 2rem; }
+  .about-desc-card { padding: 1.5rem; }
+  .about-stats-row { gap: 0.75rem; }
+  .about-stat { padding: 0.75rem 1rem; }
+  .about-stat-num { font-size: 1.5rem; }
+  .about-approach-card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  /* Projects */
+  #projects { padding-top: 4rem; padding-bottom: 4rem; }
+  .projects-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; margin-bottom: 2rem; }
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .project-img-wrapper { height: 200px; }
+  .project-body { padding: 1.25rem; }
+
+  /* Skills */
+  #skills { padding-top: 4rem; padding-bottom: 4rem; }
+  .skills-bento { grid-template-columns: 1fr; gap: 1.5rem; }
+  .skills-list { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .skill-card { padding: 1rem; gap: 0.75rem; }
+  .skill-icon { width: 36px; height: 36px; font-size: 0.7rem; }
+  .skill-card h4 { font-size: 0.82rem; }
+  .skill-card p { font-size: 0.7rem; }
+  .skills-canvas-wrapper { height: 300px; }
+
+  /* Experience */
+  #experience { padding-top: 4rem; padding-bottom: 4rem; }
+  .experience-bento { grid-template-columns: 1fr; gap: 1rem; }
+  .experience-intro-card {
+    position: static;
+    padding: 2rem;
+  }
+  .experience-intro-card .big-year { font-size: 3.5rem; margin-bottom: 1rem; }
+  .timeline-card { padding: 1.5rem; }
+  .timeline-title { font-size: 1rem; }
+  .timeline-card p { font-size: 0.85rem; }
+
+  /* Contact */
+  #contact { padding-top: 4rem; padding-bottom: 4rem; }
+  .contact-bento { grid-template-columns: 1fr; gap: 1rem; }
+  .contact-headline-card {
+    padding: 2rem;
+  }
+  .contact-headline-card h2 { font-size: 2rem; letter-spacing: -1px; }
+  .contact-headline-card p { font-size: 0.88rem; margin-bottom: 1.5rem; }
+  .contact-form-card { padding: 1.5rem; }
+  .contact-icon { width: 36px; height: 36px; font-size: 0.85rem; }
+
+  /* Modal */
+  .modal-content {
+    width: 95%;
+    padding: 1.5rem;
+    max-height: 92vh;
+  }
+
+  /* Footer */
+  footer { font-size: 0.78rem; padding: 2rem 5%; }
 }
 
+/* Small mobile (480px) */
 @media (max-width: 480px) {
-  .hero-title { font-size: 2.2rem; }
-  .hero-cta-row { flex-direction: column; }
-  .btn { width: 100%; text-align: center; }
-  .about-stats-row { flex-direction: column; }
+  section { padding: 3.5rem 4% 2.5rem; }
+
+  /* Hero */
+  .hero-title { font-size: 2.2rem; letter-spacing: -1.5px; }
+  .hero-cta-row { flex-direction: column; gap: 0.75rem; }
+  .btn { width: 100%; justify-content: center; }
+  .hero-stat-pill { flex: 1 1 50%; }
+
+  /* About */
+  .about-headline-card .big-text { font-size: 1.8rem; }
+  .about-stats-row { flex-direction: row; flex-wrap: wrap; gap: 0.5rem; }
+  .about-stat { flex: 1 1 calc(33% - 0.5rem); min-width: 80px; }
+
+  /* Skills */
+  .skills-list { grid-template-columns: 1fr; }
+
+  /* Experience */
+  .experience-intro-card .big-year { font-size: 3rem; }
+
+  /* Contact */
+  .contact-info-item { gap: 0.75rem; }
+  .contact-headline-card h2 { font-size: 1.8rem; }
+}
+
+/* Very small screens (360px) */
+@media (max-width: 360px) {
+  .hero-title { font-size: 1.9rem; }
+  .section-title { font-size: 1.75rem; }
+  .hero-stat-pill { flex: 1 1 100%; }
+  .about-stat { flex: 1 1 100%; }
 }
 
