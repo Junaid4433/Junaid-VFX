@@ -69,6 +69,22 @@ const projectData = {
     ],
     liveLink: '#',
     codeLink: '#'
+  },
+  triceratops: {
+    title: 'Prehistoric Intrusion: Skeletal Triceratops VFX Breakdown',
+    subtitle: 'VFX Artist & 3D Generalist',
+    img: 'https://images.unsplash.com/photo-1549884570-5b128c704f0d?q=80&w=800&auto=format&fit=crop',
+    video: 'assets/triceratops_vfx_shot_main.mp4',
+    breakdown: 'assets/triceratops_vfx_breakdown.mp4',
+    tags: ['Maya', 'After Effects', 'Matchmoving', '3D Animation', 'Compositing', 'VFX'],
+    description: 'A seamless VFX shot featuring a walking skeletal Triceratops traversing an ancient stone ruin environment. The project showcases advanced camera tracking, 3D character animation, environment lighting, and rigorous digital compositing to blend the CGI creature seamlessly into the live-action plate.',
+    features: [
+      'Accurate camera and perspective tracking executed in After Effects.',
+      'Detailed 3D modeling, skeletal rigging, and scene lighting built and rendered in Maya.',
+      'Polished multi-pass digital compositing integrating realistic shadows, ground interaction, and dust elements in After Effects.'
+    ],
+    liveLink: '#',
+    codeLink: '#'
   }
 };
 
